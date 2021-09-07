@@ -6,12 +6,13 @@ import { HttpClient } from '@angular/common/http';
 })
 export class CidadeService {
 
+  cidades:any = []
   CidadesUrl='http://localhost:8080/cities/';
 
 
   constructor(private http: HttpClient) { }
 
   listar(){
-    return this.http.get<any[]>(`${this.CidadesUrl}`);
+    return this.http.get<any[]>(`${this.CidadesUrl}`)
   }
 }

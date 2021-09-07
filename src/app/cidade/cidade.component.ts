@@ -1,3 +1,4 @@
+import { newArray } from '@angular/compiler/src/util';
 import { Component, OnInit } from '@angular/core';
 import { CidadeService } from '../cidade.service';
 
@@ -8,13 +9,15 @@ import { CidadeService } from '../cidade.service';
 })
 export class CidadeComponent implements OnInit {
 
-  cidades = Array<any>();
+  cidades:any=[];
+  newArray:any=[];
   constructor(private cidadeService: CidadeService) { }
-  
+
   ngOnInit(): void {
     this.listar();
   }
   listar(){
     this.cidadeService.listar().subscribe(dados=> this.cidades = dados);
+    console.log(this.cidades);
   }
 }
