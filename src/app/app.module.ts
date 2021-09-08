@@ -8,11 +8,13 @@ import { CidadeComponent } from './cidade/cidade.component';
 import {MatButtonModule} from '@angular/material/button';
 import {  MatIconModule } from '@angular/material/icon';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NovaCidadeComponent } from './nova-cidade/nova-cidade.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    CidadeComponent
+    CidadeComponent,
+    NovaCidadeComponent
   ],
   imports: [
     BrowserModule,
