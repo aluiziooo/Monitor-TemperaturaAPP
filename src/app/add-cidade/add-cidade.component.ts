@@ -1,5 +1,7 @@
+import { CidadeService } from './../cidade.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
+import { cep } from '../cep.module';
 
 @Component({
   selector: 'app-add-cidade',
@@ -8,8 +10,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AddCidadeComponent implements OnInit {
 
+  cep:cep = {
+    cep:''
+  }
+
   public form!: FormGroup;
-  constructor(private fb: FormBuilder) {
+
+  constructor(private fb: FormBuilder, private cs: CidadeService) {
     this.form = this.fb.group({
       cep:['', Validators.compose([
         Validators.minLength(8),
@@ -22,8 +29,9 @@ export class AddCidadeComponent implements OnInit {
   ngOnInit(): void {
   }
   salvar(){
-    const cep = this.form.controls['cep'].value;
-    console.log(cep);
+    this.cep.cep = this.form.controls['cep'].value;
+    console.log(this.cep);
+    this.cs.addPorCEP(this.cep);
   }
 
 }
