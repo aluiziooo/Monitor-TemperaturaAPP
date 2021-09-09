@@ -10,7 +10,7 @@ import { CidadeService } from '../cidade.service';
 export class CidadeComponent implements OnInit {
 
   cidades:any=[];
-  newArray:any=[];
+
   constructor(private cidadeService: CidadeService) { }
 
   ngOnInit(): void {

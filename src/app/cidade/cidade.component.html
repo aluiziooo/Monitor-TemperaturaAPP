@@ -1,13 +1,19 @@
-
-<p class="cidades" *ngFor="let c of cidades" >
-    <button *ngIf="c.situacao==1;else elseBlock"  mat-button color="primary">{{c.nome}}</button>
-    <ng-template #elseBlock>
-        <button mat-button disabled>{{c.nome}}</button>
-    </ng-template>
-</p>
-<br>
-<div class="add_button">
-    <button class="aaa"  mat-mini-fab color="primary" aria-label="Example icon button with a plus one icon">
-        <mat-icon>plus_one</mat-icon>
-    </button>
+<h1> Cidades Cadastradas</h1>
+<div class="display_cidades">
+  <p class="cidades" class="cidades" *ngFor="let c of cidades" >
+      <button *ngIf="c.situacao==1;else elseBlock"  mat-button color="primary">{{c.nome}}</button>
+      <ng-template #elseBlock>
+          <button mat-button disabled>{{c.nome}}</button>
+      </ng-template>
+  </p>
+  <br>
+  <div class="add_button">
+      <button [routerLink]="['/add']" class="aaa"  mat-mini-fab color="primary" aria-label="Example icon button with a plus one icon">
+          <mat-icon>plus_one</mat-icon>
+      </button>
+  </div>
+    <br>
+    <br>
+    <p class="monitorada">Cidades cadastradas e monitoradas</p>
+    <p class="desativada">Cidades cadastrada mas sem monitoramento</p>
 </div>

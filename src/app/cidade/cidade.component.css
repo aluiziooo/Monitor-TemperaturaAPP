@@ -1,4 +1,4 @@
-p{
+.cidades{
     display: inline-block;
 }
 .add_button{
@@ -9,4 +9,21 @@ p{
 }
 button{
   text-transform: uppercase;
+}
+h1{
+    text-align: center;
+    margin-top: 20px;
+    color:#3f51b5;
+}
+.display_cidades{
+    width: 700px;
+    margin: auto auto;
+}
+.desativada{
+
+    color: darkgrey;
+}
+.monitorada{
+    color: #3f51b5 ;
+    font-weight: bold;
 }

@@ -1,0 +1,21 @@
+<form class="needs-validation formu" novalidate [formGroup]="form">
+  <div class="form-row">
+    <div class="col-md-3 offset-md-4">
+      <label for="validationCustom01">insira o cep da cidade</label>
+      <input
+        type="text"
+        class="form-control"
+        id="validationCustom01"
+        placeholder="Cep da cidade"
+        formControlName="cep"
+        maxlength="8"
+        required
+      />
+      <small class="danger" *ngIf="form.controls.cep.invalid && !form.controls.cep.pristine">Esse campo deve conter 8 caracteres numericos!</small>
+      <!--<div class="valid-feedback">Looks good!</div>-->
+      <br />
+      <button [disabled]="form.invalid" class="btn btn-primary" type="submit" (click)="salvar()">Salvar</button>
+      <button class="btn btn-danger" [routerLink]="['']" type="button">cancelar</button>
+    </div>
+  </div>
+</form>

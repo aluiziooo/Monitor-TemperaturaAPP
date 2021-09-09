@@ -7,12 +7,16 @@ import { HttpClient } from '@angular/common/http';
 export class CidadeService {
 
   cidades:any = []
-  CidadesUrl='http://localhost:8080/cities/';
+  CidadesUrlGet='http://localhost:8080/cities/';
+  CidadesUrlPost='http://localhost:8080/cities/cep/}';
 
 
   constructor(private http: HttpClient) { }
 
   listar(){
-    return this.http.get<any[]>(`${this.CidadesUrl}`)
+    return this.http.get<any[]>(`${this.CidadesUrlGet}`)
+  }
+  addPorCEP(cep: String){
+     return this.http.post("http://localhost:8080/cities/cep/cep",cep);
   }
 }

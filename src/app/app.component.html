@@ -1,4 +1,5 @@
-<h1> Cidades Cadastradas</h1>
+<router-outlet></router-outlet>
+<!--<h1> Cidades Cadastradas</h1>
 <div class="display_cidades">
   <app-cidade></app-cidade>
   <br>
@@ -6,3 +7,14 @@
   <p class="monitorada">Cidades cadastradas e monitoradas</p>
   <p class="desativada">Cidades cadastrada mas sem monitoramento</p>
 </div>
+<form [formGroup]="form">
+  <fieldset>
+    <label >Cidade: </label>
+    <input type="text"
+      placeholder="Insira uma cidade"
+      maxlength="8"
+      formControlName="cep">
+      <small *ngIf="form.controls.cep.invalid && !form.controls.cep.pristine">Este campo deve conter 8 numeros</small>
+    <button [disabled]="form.invalid" (click)="addPorCEP()">Salvar</button>
+  </fieldset>
+</form>-->
