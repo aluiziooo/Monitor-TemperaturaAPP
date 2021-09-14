@@ -31,7 +31,7 @@ export class AddCidadeComponent implements OnInit {
   salvar(){
     this.cep.cep = this.form.controls['cep'].value;
     console.log(this.cep);
-    this.cs.addPorCEP(this.cep);
+    this.cs.addPorCEP(this.cep).subscribe(dados => console.log(dados));
   }
 
 }

@@ -16,8 +16,8 @@ export class CidadeComponent implements OnInit {
   ngOnInit(): void {
     this.listar();
   }
+
   listar(){
     this.cidadeService.listar().subscribe(dados=> this.cidades = dados);
-    console.log(this.cidades);
   }
 }

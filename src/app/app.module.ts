@@ -9,12 +9,16 @@ import {MatButtonModule} from '@angular/material/button';
 import {  MatIconModule } from '@angular/material/icon';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule } from '@angular/forms';
-import { AddCidadeComponent } from './add-cidade/add-cidade.component'
+import { AddCidadeComponent } from './add-cidade/add-cidade.component';
+import { SpinnerComponent } from './spinner/spinner.component';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { httpInterceptProviders } from './http-interceptors';
 @NgModule({
   declarations: [
     AppComponent,
     CidadeComponent,
-    AddCidadeComponent
+    AddCidadeComponent,
+    SpinnerComponent
   ],
   imports: [
     BrowserModule,
@@ -23,9 +27,10 @@ import { AddCidadeComponent } from './add-cidade/add-cidade.component'
     MatButtonModule,
     HttpClientModule,
     MatIconModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatProgressSpinnerModule
   ],
-  providers: [],
+  providers: [httpInterceptProviders],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
