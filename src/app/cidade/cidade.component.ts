@@ -19,5 +19,6 @@ export class CidadeComponent implements OnInit {
 
   listar(){
     this.cidadeService.listar().subscribe(dados=> this.cidades = dados);
+    console.log(this.cidades);
   }
 }

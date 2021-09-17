@@ -27,6 +27,11 @@ export class CidadeService {
      return this.http.post(`${this.CidadesUrlPost}`,CEP).pipe(tap(_=> console.log('post cidade')),
      catchError(this.handleError<any[]>('Salvar',[])));
   }
+  getHistorico(nome: String): Observable<any[]>{
+    return this.http.get<any[]>(`${this.CidadesUrlGet}`+nome).pipe(tap(_=>console.log()),
+    catchError(this.handleError<any[]>('Historico',[])));
+
+  }
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
 

@@ -13,12 +13,14 @@ import { AddCidadeComponent } from './add-cidade/add-cidade.component';
 import { SpinnerComponent } from './spinner/spinner.component';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { httpInterceptProviders } from './http-interceptors';
+import { TemperaturasComponent } from './temperaturas/temperaturas.component';
 @NgModule({
   declarations: [
     AppComponent,
     CidadeComponent,
     AddCidadeComponent,
-    SpinnerComponent
+    SpinnerComponent,
+    TemperaturasComponent
   ],
   imports: [
     BrowserModule,

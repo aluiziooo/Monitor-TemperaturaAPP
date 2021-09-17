@@ -1,7 +1,7 @@
 <h1> Cidades Cadastradas</h1>
 <div class="display_cidades">
   <p class="cidades" class="cidades" *ngFor="let c of cidades" >
-      <button *ngIf="c.situacao==1;else elseBlock"  mat-button color="primary">{{c.nome}}</button>
+      <button [routerLink]="['/cidade', c.nome]"  *ngIf="c.situacao==1;else elseBlock"  mat-button color="primary">{{c.nome}}</button>
       <ng-template #elseBlock>
           <button mat-button disabled>{{c.nome}}</button>
       </ng-template>
