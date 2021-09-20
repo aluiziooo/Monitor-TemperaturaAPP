@@ -8,59 +8,64 @@ import { Chart, registerables  } from 'chart.js';
   templateUrl: './temperaturas.component.html',
   styleUrls: ['./temperaturas.component.css']
 })
-export class TemperaturasComponent implements OnInit, AfterViewInit {
+export class TemperaturasComponent implements OnInit, AfterViewInit{
   @ViewChild("myChart", {static:true}) myChart!: ElementRef;
-
-  labels = [
-    'January',
-    'February',
-    'March',
-    'April',
-    'May',
-    'June',
-  ];
-
-  data = {
-    labels: this.labels,
-    datasets: [{
-      label: 'Historico de Temperatura',
-      backgroundColor: 'rgb(255, 99, 132)',
-      borderColor: 'rgb(255, 99, 132)',
-      data: [0, 10, 5, 2, 20, 30, 45],
-    }]
-  };
-
-  config = {
-    type: 'line',
-    data: this.data,
-    options: {}
-  };
-
-  grafico:any;
+  par = this.route.snapshot.paramMap.get('nome');
+  grafico!: Chart;
   temperaturas:any=[];
+  temperaturaslist!:any[];
+  tempsList!:number[];
 
 
   constructor(private cidadeService:CidadeService, private route: ActivatedRoute) {
     Chart.register(...registerables)
    }
-  temperaturalist:any=[];
-
 
   ngOnInit(): void {
     const par = this.route.snapshot.paramMap.get('nome');
     this.listaHistorico(par!);
-  }
 
+
+  }
   ngAfterViewInit(){
-    this.grafico = new Chart(this.myChart.nativeElement, {type:'line',
-    data:this.data
+    this.grafico = new Chart(this.myChart.nativeElement.getContext('2d'), {
+      type: 'line',
+      data: {
+          labels: [],
+          datasets: [{
+              label:'HISTORICO DE TEMPERATURA DE '+this.par?.toUpperCase(),
+              data: [],
+              backgroundColor:'rgba(63,81,181,1)',
+              borderColor: 'rgba(63,81,181,1)',
+              borderWidth: 1
+          }]
+      },
+      options: {
+          scales: {
+              y: {
+                  beginAtZero: true
+              }
+          }
+      }
   });
   }
+
+
   listaHistorico(nome: String){
-    this.cidadeService.getHistorico(nome).subscribe(dados => this.temperaturas = dados as []);
-    this.temperaturalist = this.temperaturas.temperaturas;
-    console.log(this.temperaturas);
+    this.cidadeService.getHistorico(nome).subscribe(dados => {
+      this.temperaturas = dados;
+      var newData:any=[];
+      var newLabels:any=[];
+      this.temperaturas.temperaturas.forEach((temp:any) => {
+        newLabels.push(temp.data);
+        newData.push(temp.temp);
+      });
+      this.grafico.data.datasets[0].data=newData;
+      this.grafico.data.labels=newLabels;
+      this.grafico.update();
+    });
   }
+
 
 
 }

@@ -1,4 +1,4 @@
-import { catchError, tap } from 'rxjs/operators';
+import { catchError, publishReplay, refCount, tap } from 'rxjs/operators';
 import { Observable, of } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
@@ -28,8 +28,7 @@ export class CidadeService {
      catchError(this.handleError<any[]>('Salvar',[])));
   }
   getHistorico(nome: String): Observable<any[]>{
-    return this.http.get<any[]>(`${this.CidadesUrlGet}`+nome).pipe(tap(_=>console.log()),
-    catchError(this.handleError<any[]>('Historico',[])));
+    return this.http.get<any[]>(`${this.CidadesUrlGet}`+nome).pipe(publishReplay(1), refCount());
 
   }
   private handleError<T>(operation = 'operation', result?: T) {
