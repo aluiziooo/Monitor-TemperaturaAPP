@@ -1,5 +1,7 @@
 import { newArray } from '@angular/compiler/src/util';
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+
+
 import { CidadeService } from '../cidade.service';
 
 @Component({
@@ -9,8 +11,9 @@ import { CidadeService } from '../cidade.service';
 })
 export class CidadeComponent implements OnInit {
 
+  cidade!:string;
   cidades:any=[];
-
+  state = false;
   constructor(private cidadeService: CidadeService) { }
 
   ngOnInit(): void {
@@ -20,5 +23,14 @@ export class CidadeComponent implements OnInit {
   listar(){
     this.cidadeService.listar().subscribe(dados=> this.cidades = dados);
     console.log(this.cidades);
+  }
+  alterarEstado(cidade:string){
+    if(cidade==null && cidade!=''){
+      this.state=!this.state;
+      console.log(this.state);
+    } else{
+      this.cidadeService.deleteCidade(cidade).subscribe(dados => console.log(dados));
+      alert("cidade desativada");
+    }
   }
 }

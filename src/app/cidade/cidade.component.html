@@ -11,6 +11,9 @@
       <button [routerLink]="['/add']" class="aaa"  mat-mini-fab color="primary" aria-label="Example icon button with a plus one icon">
           <mat-icon>plus_one</mat-icon>
       </button>
+      <button class="maxtemps" [routerLink]="['/max_temps']" class="aaa"  mat-mini-fab color="primary" aria-label="Example icon button with a plus one icon">
+        <mat-icon>analytics</mat-icon>
+    </button>
   </div>
     <br>
     <br>
@@ -19,5 +22,7 @@
     <br>
     <br>
     <button mat-raised-button color="primary" (click)="listar()">Refresh</button>
+    <button class="ativar" mat-raised-button color="primary" (click)="alterarEstado(cidade)">Desativar cidade</button>
+    <input class="inputcid" [(ngModel)] = "cidade" *ngIf="state==true" type="text" placeholder="nome para desativar">
 </div>
 <app-spinner></app-spinner>

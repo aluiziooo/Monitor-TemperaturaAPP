@@ -1,3 +1,4 @@
+import { GraficomaxComponent } from './graficomax/graficomax.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AddCidadeComponent } from './add-cidade/add-cidade.component';
@@ -9,7 +10,8 @@ import { TemperaturasComponent } from './temperaturas/temperaturas.component';
 const routes: Routes = [
   {path:'', component: CidadeComponent},
   {path:'add', component: AddCidadeComponent},
-  {path:'cidade/:nome', component:TemperaturasComponent}
+  {path:'cidade/:nome', component:TemperaturasComponent},
+  {path:'max_temps', component:GraficomaxComponent}
 ];
 
 @NgModule({

@@ -28,7 +28,17 @@ export class CidadeService {
      catchError(this.handleError<any[]>('Salvar',[])));
   }
   getHistorico(nome: String): Observable<any[]>{
-    return this.http.get<any[]>(`${this.CidadesUrlGet}`+nome).pipe(publishReplay(1), refCount());
+    return this.http.get<any[]>(`${this.CidadesUrlGet}`+nome).pipe(tap(_=> console.log('Historico temperatura')),
+    catchError(this.handleError<any[]>('listar',[])));
+
+  }
+  deleteCidade(nome:string): Observable<any[]>{
+    return this.http.delete<any[]>(`${this.CidadesUrlGet}`+nome).pipe(tap(_=> console.log('Deletar monitoramento')),
+    catchError(this.handleError<any[]>('deletar',[])));
+  }
+  listarTempsMax(): Observable<any[]>{
+    return this.http.get<any[]>(`${this.CidadesUrlGet}`+"max_temperatures").pipe(tap(_=> console.log('Temperaturas Maximas')),
+    catchError(this.handleError<any[]>('listar',[])));
 
   }
   private handleError<T>(operation = 'operation', result?: T) {
