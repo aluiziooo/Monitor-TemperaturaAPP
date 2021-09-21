@@ -23,7 +23,7 @@ export class GraficomaxComponent implements OnInit, AfterViewInit {
       data: {
           labels: [],
           datasets: [{
-              label: 'Temperaturas Maximas',
+              label: 'Temperatura Maxima ',
               data: [],
               backgroundColor: [
                   'rgba(255, 99, 132, 0.2)',
@@ -53,7 +53,7 @@ export class GraficomaxComponent implements OnInit, AfterViewInit {
       var newLabels:any = [];
       dados.forEach((temps:any) => {
        newData.push(temps.temp);
-       newLabels.push(temps.city_name);
+       newLabels.push(temps.city_name.toUpperCase());
       });
       this.grafico.data.datasets[0].data=newData;
       this.grafico.data.labels=newLabels;

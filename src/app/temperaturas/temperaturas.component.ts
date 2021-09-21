@@ -1,7 +1,8 @@
 import { CidadeService } from './../cidade.service';
-import { Component, ElementRef, OnInit, ViewChild,AfterViewInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild,AfterViewInit,TemplateRef  } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Chart, registerables  } from 'chart.js';
+import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 
 @Component({
   selector: 'app-temperaturas',
@@ -10,14 +11,17 @@ import { Chart, registerables  } from 'chart.js';
 })
 export class TemperaturasComponent implements OnInit, AfterViewInit{
   @ViewChild("myChart", {static:true}) myChart!: ElementRef;
+
   par = this.route.snapshot.paramMap.get('nome');
   grafico!: Chart;
   temperaturas:any=[];
   temperaturaslist!:any[];
   tempsList!:number[];
+  //MODAL
+  modalRef?: BsModalRef;
+  message?: string;
 
-
-  constructor(private cidadeService:CidadeService, private route: ActivatedRoute) {
+  constructor(private cidadeService:CidadeService, private route: ActivatedRoute,private modalService: BsModalService) {
     Chart.register(...registerables)
    }
 
@@ -66,6 +70,19 @@ export class TemperaturasComponent implements OnInit, AfterViewInit{
     });
   }
 
+  //MODAL
+  openModal(template: TemplateRef<any>) {
+    this.modalRef = this.modalService.show(template, {class: 'modal-sm'});
+  }
+
+  confirm(): void {
+    this.cidadeService.deletarHistorico(this.par!).subscribe();
+    this.modalRef?.hide();
+  }
+
+  decline(): void {
+    this.modalRef?.hide();
+  }
 
 
 }

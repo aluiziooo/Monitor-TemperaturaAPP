@@ -1,3 +1,4 @@
+import { BsModalService } from 'ngx-bootstrap/modal';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
@@ -16,6 +17,7 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { httpInterceptProviders } from './http-interceptors';
 import { TemperaturasComponent } from './temperaturas/temperaturas.component';
 import { GraficomaxComponent } from './graficomax/graficomax.component';
+import { TooltipModule } from 'ngx-bootstrap/tooltip';
 @NgModule({
   declarations: [
     AppComponent,
@@ -34,9 +36,10 @@ import { GraficomaxComponent } from './graficomax/graficomax.component';
     MatIconModule,
     FormsModule,
     ReactiveFormsModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    TooltipModule.forRoot()
   ],
-  providers: [httpInterceptProviders],
+  providers: [httpInterceptProviders,BsModalService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -39,7 +39,10 @@ export class CidadeService {
   listarTempsMax(): Observable<any[]>{
     return this.http.get<any[]>(`${this.CidadesUrlGet}`+"max_temperatures").pipe(tap(_=> console.log('Temperaturas Maximas')),
     catchError(this.handleError<any[]>('listar',[])));
-
+  }
+  deletarHistorico(nome:string){
+    return this.http.patch<any[]>(`${this.CidadesUrlGet}`+nome,null).pipe(tap(_=> console.log('Deletar monitoramento')),
+    catchError(this.handleError<any[]>('deletar',[])));
   }
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {

@@ -3,8 +3,19 @@
 </div>
 <br>
 <div class="btn_voltar">
-  <button [routerLink]="['']" class="aaa"  mat-mini-fab color="primary" aria-label="Example icon button with a plus one icon">
+  <button [routerLink]="['']" class="aaa"  mat-mini-fab color="primary" >
     <mat-icon>arrow_back</mat-icon>
   </button>
+  <button class="bbb"  mat-mini-fab color="primary" (click)="openModal(template)">
+    <mat-icon>delete</mat-icon>
+  </button>
 </div>
+
+<ng-template #template>
+  <div class="modal-body text-center">
+    <p>Voce realmente deseja deletar o Historico?</p>
+    <button type="button" class="btn btn-default" (click)="confirm()" >Sim</button>
+    <button type="button" class="btn btn-primary" (click)="decline()" >Não</button>
+  </div>
+</ng-template>
 <app-spinner></app-spinner>
